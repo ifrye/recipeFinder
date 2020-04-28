@@ -22,12 +22,23 @@ const Login: React.FC = () => {
       setLogIn(true);
       jsCookie.set("loggedin", "true");
       {console.log("loggedin cookie: " + jsCookie.get("loggedin"))}
+      jsCookie.set("username", {email})
+      console.log("username cookie: " + jsCookie.get("username"));
       //NEED TO UNSET COOKIE!!
+    }if (!res){
+      jsCookie.set("loggedin", "false");
+      console.log("loggedin cookie: " + jsCookie.get("loggedin"));
     }
+  }
+
+  function gotToLogin(){
+    jsCookie.set("loggedin", "false");
+    console.log("Log in Cookie in gotToLogin: " + jsCookie.get("loggedin"));
   }
 
   return (
     <IonPage>
+      {gotToLogin}
       <IonContent className="ion-padding login">
         <div className="container">
             <IonTitle className="sanserif textFont"><h1>RECIPE FINDER</h1></IonTitle>

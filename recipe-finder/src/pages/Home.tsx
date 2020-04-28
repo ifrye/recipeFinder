@@ -9,37 +9,27 @@ import jsCookie from "js-cookie";
 
 const Home: React.FC = () => {
 
-const [clickedButton1, setClickedButton1] = useState<string>();
-const [clickedButton2, setClickedButton2] = useState<string>();
-
-function randomRecipe(){
-    setClickedButton1("random");
-}
-
-function recipeOfTheDay(){
-    setClickedButton2("recipeOfTheDay");
-}
-
 return (
       <IonPage>
-          <IonHeader>
+          <IonHeader className="homeHeader">
         <IonToolbar>
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
           <br />
-          <IonTitle>Recipe Finder</IonTitle>
+          <IonTitle className="homeTitle">Recipe Finder</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>
-      <IonButton expand="block" onClick={randomRecipe}>
+      <IonButton color="medium" expand="block" routerLink="/search">
           Random Recipe
     </IonButton>
-    <IonButton expand="block" onClick={recipeOfTheDay}>
-          Recipe of the Day
+
+    <IonTitle className="orFormat">OR</IonTitle>
+
+    <IonButton color="medium" expand="block" routerLink="/mealplan">
+          Daily Meal Plan
     </IonButton>
-    {clickedButton1 == "random" ? <Redirect to='/search'  /> : <Redirect to='/home'  /> }
-    {clickedButton2 == "recipeOfTheDay" ? <Redirect to='/recipeoftheday'  /> : <Redirect to='/home'  />}
       </IonContent>
     </IonPage>
   )

@@ -23,7 +23,7 @@ import '@ionic/react/css/display.css';
 import Login from './pages/Login'
 import Home from './pages/Home'
 import Search from './pages/Search'
-import RecipeOfTheDay from './pages/RecipeOfTheDay'
+import MealPlan from './pages/MealPlan'
 import jsCookie from "js-cookie";
 
 import * as firebase from 'firebase';
@@ -37,14 +37,14 @@ const App: React.FC = () => {
   return (
     <IonApp>
       <IonReactRouter>
-        <IonSplitPane contentId="main">
-          {console.log("loggedin cookie: " + jsCookie.get("loggedin"))}
-          {jsCookie.get("loggedin")=="true" ? <Menu /> : null}
+        <IonSplitPane contentId="main" disabled >
+          {console.log("In App loggedin cookie: " + jsCookie.get("loggedin"))}
+          {jsCookie.get("loggedin")==="true" ? <Menu /> : null}
           <IonRouterOutlet id="main">
             <Route path="/login" component={Login} exact={true} />
             <Route path="/home" component={Home} exact={true} />
             <Route path="/search" component={Search} exact={true} />
-            <Route path="/recipeoftheday" component={RecipeOfTheDay} exact={true} />
+            <Route path="/mealplan" component={MealPlan} exact={true} />
             <Route path="/" render={() => <Redirect to="/login" />} exact={true} />
             {/*<Route path="/page/inbox" render={() => <Redirect to="/login" />} exact={true} />*/}
           </IonRouterOutlet>

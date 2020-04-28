@@ -1,4 +1,4 @@
-import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar, IonInput, IonButton, IonGrid, IonRow, IonCol, IonImg } from '@ionic/react';
+import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar, IonInput, IonButton, IonGrid, IonRow, IonCol, IonImg, IonSelect, IonSelectOption, IonList, IonItem, IonLabel } from '@ionic/react';
 import React, { useState } from 'react';
 import { useParams, Route, Redirect } from 'react-router';
 //import ExploreContainer from '../components/ExploreContainer';
@@ -19,6 +19,8 @@ const Search: React.FC = () => {
   const [instructions, setInstructions] = useState<string[]>([]);
 
   async function handleSearch(){
+    console.log("tag1: " + {tag1});
+    console.log("tag2: " + {tag2});
     const item1 = await getItem(tag1,tag2);
     console.log(item1);
     setTitle(item1.recipes[0].title);
@@ -57,55 +59,57 @@ const Search: React.FC = () => {
             <IonMenuButton />
           </IonButtons>
           <br />
-          <IonTitle>Recipe Finder</IonTitle>
+          <IonTitle className="randomTitle">Random Recipe</IonTitle>
         </IonToolbar>
       </IonHeader>
 
       <IonContent>
         <br />
-        <IonTitle>Search for Recipes</IonTitle>
-
-        <br />
-
-        <IonInput value={tag1} placeholder='Tag1' type='text' onIonChange={e => setTag1(e.detail.value!)} ></IonInput>
-        <IonInput value={tag2} placeholder='Tag2' type='text' onIonChange={e => setTag2(e.detail.value!)}></IonInput>
-
-        <IonButton expand="block" onClick={() => handleSearch()}>
-                Search
-        </IonButton>
+        <IonList>
+          <IonItem>
+            <IonLabel>Category</IonLabel>
+            <IonSelect value={tag1} interface="popover" onIonChange={e => setTag1(e.detail.value!)} >
+              <IonSelectOption value="breakfast">Breakfast</IonSelectOption>
+              <IonSelectOption value="lunch">Lunch</IonSelectOption>
+              <IonSelectOption value="dinner">Dinner</IonSelectOption>
+            </IonSelect>
+          </IonItem>
+          <IonItem>
+            <IonLabel>Diet</IonLabel>
+            <IonSelect value={tag2} interface="popover" onIonChange={e => setTag2(e.detail.value!)}>
+              <IonSelectOption value="vegetarian">Vegetarian</IonSelectOption>
+              <IonSelectOption value="vegan">Vegan</IonSelectOption>
+            </IonSelect>
+          </IonItem>
+          <IonButton color="medium" expand="block" onClick={() => handleSearch()}>
+                  Search
+          </IonButton>
+        </IonList>
         
         {title ? 
         <IonGrid>
           <IonRow>
-            <IonCol>
-              <div>
-                Name
-              </div>
-            </IonCol>
-            <IonCol>
-              <div>
-               {title}
-              </div>
-            </IonCol>
-          </IonRow>
-          <IonRow>
-            <IonCol>
-              <div>
-                Image
-              </div>
-            </IonCol>
-            <IonCol>
+          <IonCol>
               <div>
                 <IonImg src={imageURL}></IonImg>
               </div>
             </IonCol>
           </IonRow>
           <IonRow>
-            <IonCol>
-              <div>
-                Ingredients
-              </div>
+          <IonCol>
+              <h1 className="recipeTitle">
+               {title}
+              </h1>
             </IonCol>
+          </IonRow>
+          <IonRow>
+          <IonCol>
+              <h2>
+                Ingredients:
+              </h2>
+            </IonCol>
+          </IonRow>
+          <IonRow>
             <IonCol>
               <div>
               {ingredients.map((thing, index) =>
@@ -117,11 +121,13 @@ const Search: React.FC = () => {
             </IonCol>
           </IonRow>
           <IonRow>
-            <IonCol>
-              <div>
-                Instructions
-              </div>
+          <IonCol>
+              <h2>
+                Instructions:
+              </h2>
             </IonCol>
+          </IonRow>
+          <IonRow>
             <IonCol>
               <div>
               {instructions.map((thing1, index) =>

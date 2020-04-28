@@ -10,3 +10,11 @@ ion-toolbar{
   --background: transparent;
   background-color: aqua;
 }
+
+.recipeTitle{
+  text-align: center;
+}
+
+.randomTitle{
+  padding-right: 75px;
+}
