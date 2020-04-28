@@ -1,0 +1,12 @@
+ion-content {
+  --background: transparent;
+}
+
+ion-title{
+  text-align: center;
+}
+
+ion-toolbar{
+  --background: transparent;
+  background-color: aqua;
+}

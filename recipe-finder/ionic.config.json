@@ -1,0 +1,7 @@
+{
+  "name": "Recipe Finder",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}

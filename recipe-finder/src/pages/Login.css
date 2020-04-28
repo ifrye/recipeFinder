@@ -1,0 +1,29 @@
+ion-content.login {
+    --background: none;
+    background-image: url(../images/Login_background.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+ion-title {
+    margin-bottom: 3%;
+}
+
+.container {
+    text-align: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+.sanserif {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.textFont{
+    font-weight: bold;
+    font-size: 5000%;
+}
