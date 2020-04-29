@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router';
 import './Login.css';
 import { star, logoFacebook } from 'ionicons/icons';
-import { userLogin } from '../hooks/useFirebase';
+import { userLogin, facebookLogin } from '../hooks/useFirebase';
 import  { Redirect } from 'react-router-dom';
 import jsCookie from "js-cookie";
 
@@ -31,6 +31,10 @@ const Login: React.FC = () => {
     }
   }
 
+  async function fbLogin(){
+    const res = await facebookLogin();
+  }
+
   function gotToLogin(){
     jsCookie.set("loggedin", "false");
     console.log("Log in Cookie in gotToLogin: " + jsCookie.get("loggedin"));
@@ -47,7 +51,10 @@ const Login: React.FC = () => {
             <IonInput value={password} placeholder='Password' type='password' onIonChange={e => setPassword(e.detail.value!)}></IonInput>
             {isLoggedIn ? <Redirect to='/home'  /> : <Redirect to='/login'  />}
             {console.log("isLoggedIn: " + isLoggedIn)}
-            <IonButton expand="block" onClick={() => login()}>
+            <IonButton color="medium" expand="block" onClick={() => login()}>
+                Sign in
+            </IonButton>
+            <IonButton expand="block" onClick={() => fbLogin()}>
                 <IonIcon slot="start" icon={logoFacebook}></IonIcon>
                 Sign in with Facebook
             </IonButton>
